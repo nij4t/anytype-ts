@@ -1,7 +1,7 @@
 {
 	"server": "http://127.0.0.1:31008",
 	"pinLength": 6,
-	"sentry": "https://44e6df81644c4e36b21b1dbea62b8a1a@sentry.anytype.io/3",
+	"sentry": "https://a0086bb8822af2f5df1819f2f793f11f@o4505890838675456.ingest.sentry.io/4505890857680896",
 	"amplitude": "1ba981d1a9afb8af8c81847ef3383a20",
 	"protocol": "anytype",
 	"appName": "Anytype",
