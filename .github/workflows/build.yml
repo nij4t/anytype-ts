@@ -17,8 +17,8 @@ jobs:
     steps:
       - name: Setup
         run: | 
-          git config --global url."https://${{secrets.USER}}:${{secrets.TOKEN}}@github.com/".insteadOf "https://github.com/"
-          git config --global url."https://${{secrets.USER}}:${{secrets.TOKEN}}@api.github.com/".insteadOf "https://api.github.com/"
+          git config --global url."https://${{github.actor}}:${{secrets.GITHUB_TOKEN}}@github.com/".insteadOf "https://github.com/"
+          git config --global url."https://${{github.actor}}:${{secrets.GITHUB_TOKEN}}@api.github.com/".insteadOf "https://api.github.com/"
 
       - name: Install AzureSignTool
         if: matrix.os == 'windows-latest'
@@ -38,7 +38,7 @@ jobs:
       - name: Update locale
         run: npm run update:locale
         env:
-          GITHUB_TOKEN: ${{secrets.TOKEN}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       #- name: Update Deps
       #  run: npm run build:deps
@@ -46,20 +46,20 @@ jobs:
       - name: Update Addon Windows
         if: matrix.os == 'windows-latest'
         shell: bash  
-        run: ./update-ci.sh ${{secrets.USER}} ${{secrets.TOKEN}} ${{matrix.os}}
+        run: ./update-ci.sh ${{github.actor}} ${{secrets.GITHUB_TOKEN}} ${{matrix.os}}
 
       - name: Update Addon
         if: matrix.os != 'windows-latest'
         shell: bash  
         run: |
-          ./update-ci.sh ${{secrets.USER}} ${{secrets.TOKEN}} ${{matrix.os}} arm
-          ./update-ci.sh ${{secrets.USER}} ${{secrets.TOKEN}} ${{matrix.os}} amd
+          ./update-ci.sh ${{github.actor}} ${{secrets.GITHUB_TOKEN}} ${{matrix.os}} arm
+          ./update-ci.sh ${{github.actor}} ${{secrets.GITHUB_TOKEN}} ${{matrix.os}} amd
 
       - name: Build Front Mac OS
         if: matrix.os == 'macos-latest'
         uses: samuelmeuli/action-electron-builder@v1
         with:
-          github_token: ${{secrets.TOKEN}}
+          github_token: ${{secrets.GITHUB_TOKEN}}
           mac_certs: ${{ secrets.MAC_CERT_TEXT }}
           mac_certs_password: ${{ secrets.MAC_CERT_PASS }}
           release: ${{ startsWith(github.ref, 'refs/tags/v') }}
@@ -78,7 +78,7 @@ jobs:
         if: matrix.os != 'macos-latest'
         uses: samuelmeuli/action-electron-builder@v1
         with:
-          github_token: ${{secrets.TOKEN}}
+          github_token: ${{secrets.GITHUB_TOKEN}}
           release: ${{ startsWith(github.ref, 'refs/tags/v') }}
         env:
           DEBUG: electron-builder
@@ -113,7 +113,7 @@ jobs:
         with:
           files: "artifacts/**"
         env:
-          GITHUB_TOKEN: ${{secrets.TOKEN}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: Delete old releases
         uses: dev-drprasad/delete-older-releases@v0.2.0
@@ -121,4 +121,4 @@ jobs:
           keep_latest: 3
           delete_tag_pattern: alpha
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
