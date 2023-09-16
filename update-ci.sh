@@ -51,11 +51,11 @@ printf "Done\n"
 
 if [ "$platform" = "windows-latest" ]; then
   echo -n "Uncompressing... "
-  unzip $FILE
-  printf "Done\n"
+  # unzip $FILE
+  # printf "Done\n"
   
   echo "Moving... "
-  mv -fv grpc-server.exe "$folder/anytypeHelper.exe"
+  # mv -fv grpc-server.exe "$folder/anytypeHelper.exe"
 else 
   echo -n "Uncompressing... " 
   tar -zxf $FILE
