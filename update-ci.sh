@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-REPO="anyproto/anytype-heart"
+REPO="nij4t/anytype-heart"
 FILE="addon.tar.gz"
 GITHUB="api.github.com"
 
