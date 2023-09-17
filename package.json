@@ -32,7 +32,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/anyproto/anytype-ts.git"
+		"url": "git+https://github.com/nij4t/anytype-ts.git"
 	},
 	"author": {
 		"name": "Any Association",
@@ -40,7 +40,7 @@
 	},
 	"license": "SEE LICENSE IN LICENSE.md",
 	"bugs": {
-		"url": "https://github.com/anyproto/anytype-ts/issues"
+		"url": "https://github.com/nij4t/anytype-ts/issues"
 	},
 	"homepage": "https://anytype.io",
 	"devDependencies": {
@@ -500,9 +500,7 @@
 			"artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
 			"publish": [
 				{
-					"provider": "spaces",
-					"name": "anytype-release",
-					"region": "fra1"
+					"provider": "github"
 				}
 			],
 			"signIgnore": [
@@ -520,9 +518,7 @@
 			"icon": "electron/img/icon256x256.png",
 			"publish": [
 				{
-					"provider": "spaces",
-					"name": "anytype-release",
-					"region": "fra1"
+					"provider": "github"
 				}
 			]
 		},
@@ -541,9 +537,7 @@
 			"description": "Anytype",
 			"publish": [
 				{
-					"provider": "spaces",
-					"name": "anytype-release",
-					"region": "fra1"
+					"provider": "github"
 				}
 			]
 		},
